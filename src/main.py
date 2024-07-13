@@ -34,15 +34,28 @@ slow_mode = controller.buttonL1
 def autonomous():
     return
 
+# monitor controller input
 def check_controller():
     while True:
-        # left motor group spin
+        # left motor group spin forward
         if controller.axis3.position() > 0:
             motorgroupleft.spin(FORWARD, controller.axis3.position, PERCENT)
+        # left motor group spin backward
+        elif controller.axis3.position() < 0:
+            motorgroupleft.spin(REVERSE, abs(controller.axis3.position()), PERCENT)
+        # no input then don't spin motor group
+        else:
+            motorgroupleft.spin(FORWARD, 0, PERCENT)
 
-        # right motor group spin
+        # right motor group spin forward
         if controller.axis2.position() > 0:
-            motorgroupright.spin(FORWARD, controller.axis3.position, PERCENT)
+            motorgroupright.spin(FORWARD, controller.axis2.position, PERCENT)
+        # right motor group spin backward
+        elif controller.axis2.position() < 0:
+            motorgroupright.spin(REVERSE, abs(controller.axis2.position()), PERCENT)
+        # no input then don't spin motor group
+        else:
+            motorgroupright.spin(FORWARD, 0, PERCENT)
         
 
 
