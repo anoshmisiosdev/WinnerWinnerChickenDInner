@@ -28,10 +28,9 @@ escalator = Motor(Ports.PORT5, True)
 def autonomous():
     return
 def drive():
-    motorgroupleft.spin(FORWARD, controller.axis3.value)
-    motorgroupright.spin(FORWARD, controller.axis2.value)
-def user_control():
-    while True:
-        drive()
-
-user_control()
+    speedleft = controller.axis3.value
+    speedright = controller.axis2.value
+    motorgroupleft.set_velocity(FORWARD, controller.axis3.position)
+    motorgroupright.set_velocity(FORWARD,  controller.axis2.position)
+while True:
+    drive()
