@@ -48,7 +48,4 @@ def user_control():
     while True:
         drive()
 
-
-comp = Competition(user_control, autonomous)
-pre_autonomous()
 user_control()
