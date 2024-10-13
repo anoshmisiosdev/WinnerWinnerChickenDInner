@@ -1,8 +1,8 @@
 # ---------------------------------------------------------------------------- #
 #                                                                              #
 # 	Module:       main.py                                                      #
-# 	Author:       Riyan Anosh and Aditiya Kolekar                              #
-# 	Created:      5/26/2024, 12:21:32 PM                                       #
+# 	Author:       prasu                                                        #
+# 	Created:      10/12/2024, 8:43:44 PM                                       #
 # 	Description:  V5 project                                                   #
 #                                                                              #
 # ---------------------------------------------------------------------------- #
@@ -11,35 +11,37 @@
 from vex import *
 
 # Brain should be defined by default
-brain = Brain()
+brain=Brain()
 
-controller = Controller()
 brain.screen.print("Hello V5")
-
+# ---------------------------------------------------------------------------- #
+#                                                                              #
+# 	Module:       main.py                                                      #
+# 	Author:       Riyan Anosh and Aditiya Kolekar                              #
+# 	Created:      5/26/2024, 12:21:32 PM                                       #
+# 	Description:  V5 project                                                   #
+#                                                                              #
+controller = Controller()
 motor1 = Motor(Ports.PORT1, False)  # Front left, direction reversed
 motor2 = Motor(Ports.PORT2, True)  # Front right
 motor3 = Motor(Ports.PORT3, False) # Back left, direction reversed
 motor4 = Motor(Ports.PORT4, True) # Back right
-motor5 = Motor(Ports.PORT5, False)
 motor6 = Motor(Ports.PORT6, True)
-holding = Pneumatics(Ports.PORT7)
+#holding = Pneumatics(Ports.PORT7)
 motorgroupleft = MotorGroup(motor1, motor3)
 motorgroupright = MotorGroup(motor2, motor4)
 drivemode = DriveTrain(motorgroupleft, motorgroupright, 319.19, 295, 40, MM, 1)
 escalator = Motor(Ports.PORT5, True)
 
-slow_mode = controller.buttonL1
 #bing bong
 
-def autonomous():
-    return
 
-# monitor controller input
-def check_controller():
+# monitor Controller input
+def check_Controller():
     while True:
         # left motor group spin forward
         if controller.axis3.position() > 0:
-            motorgroupleft.spin(FORWARD, controller.axis3.position, PERCENT)
+            motorgroupleft.spin(FORWARD, controller.axis3.position(), PERCENT)
         # left motor group spin backward
         elif controller.axis3.position() < 0:
             motorgroupleft.spin(REVERSE, abs(controller.axis3.position()), PERCENT)
@@ -49,7 +51,7 @@ def check_controller():
 
         # right motor group spin forward
         if controller.axis2.position() > 0:
-            motorgroupright.spin(FORWARD, controller.axis2.position, PERCENT)
+            motorgroupright.spin(FORWARD, controller.axis2.position(), PERCENT)
         # right motor group spin backward
         elif controller.axis2.position() < 0:
             motorgroupright.spin(REVERSE, abs(controller.axis2.position()), PERCENT)
@@ -59,23 +61,23 @@ def check_controller():
         if controller.buttonA.pressing():
             openning = 0
             if openning == 1:
-                holding.close()
+                #holding.close()
                 openning = 0
             else:
-                holding.open()
+                #holding.open()
                 openning = 1
+
+check_Controller()
                 
         
 
 
 
 
-def drive():
-    check_controller()
 
 
-def user_control():
-    while True:
-        drive()
 
-user_control()
+
+
+
+        
