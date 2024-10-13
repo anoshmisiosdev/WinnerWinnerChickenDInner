@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------- #
 #                                                                              #
 # 	Module:       main.py                                                      #
-# 	Author:       Riyan Anosh                                                  #
+# 	Author:       Riyan Anosh and Aditiya Kolekar                              #
 # 	Created:      5/26/2024, 12:21:32 PM                                       #
 # 	Description:  V5 project                                                   #
 #                                                                              #
@@ -22,7 +22,7 @@ motor3 = Motor(Ports.PORT3, False) # Back left, direction reversed
 motor4 = Motor(Ports.PORT4, True) # Back right
 motor5 = Motor(Ports.PORT5, False)
 motor6 = Motor(Ports.PORT6, True)
-
+holding = Pneumatics(Ports.PORT7)
 motorgroupleft = MotorGroup(motor1, motor3)
 motorgroupright = MotorGroup(motor2, motor4)
 drivemode = DriveTrain(motorgroupleft, motorgroupright, 319.19, 295, 40, MM, 1)
@@ -56,6 +56,15 @@ def check_controller():
         # no input then don't spin motor group
         else:
             motorgroupright.spin(FORWARD, 0, PERCENT)
+        if controller.buttonA.pressing():
+            openning = 0
+            if openning == 1:
+                holding.close()
+                openning = 0
+            else:
+                holding.open()
+                openning = 1
+                
         
 
 
