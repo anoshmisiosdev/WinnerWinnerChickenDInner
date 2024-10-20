@@ -27,7 +27,7 @@ motor2 = Motor(Ports.PORT2, True)  # Front right
 motor3 = Motor(Ports.PORT3, False) # Back left, direction reversed
 motor4 = Motor(Ports.PORT4, True) # Back right
 motor6 = Motor(Ports.PORT6, True)
-#holding = Pneumatics(Ports.PORT7)
+holding = Pneumatics(Ports.PORT7)
 motorgroupleft = MotorGroup(motor1, motor3)
 motorgroupright = MotorGroup(motor2, motor4)
 drivemode = DriveTrain(motorgroupleft, motorgroupright, 319.19, 295, 40, MM, 1)
@@ -61,10 +61,10 @@ def check_Controller():
         if controller.buttonA.pressing():
             openning = 0
             if openning == 1:
-                #holding.close()
+                holding.close()
                 openning = 0
             else:
-                #holding.open()
+                holding.open()
                 openning = 1
 
 check_Controller()
