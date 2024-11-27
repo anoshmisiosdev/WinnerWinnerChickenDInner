@@ -75,7 +75,16 @@ def check_Controller():
       
        
 def pre_auton():
-    biggest = vision_1.largest_object.width;
+    biggest = vision_1.largest_object.width
+    
+    # determines best brightness level based on how well the object can be seen
+    for i in range(0, 20):
+        brightness += 5
+        current = vision_1.largest_object.width
+        if current > biggest:
+            biggest = current
+            current = 0
+        
     
                    
 def driver():
