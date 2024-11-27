@@ -33,8 +33,14 @@ motorgroupright = MotorGroup(motor2, motor4)
 drivemode = DriveTrain(motorgroupleft, motorgroupright, 319.19, 295, 40, MM, 1)
 escalator = Motor(Ports.PORT5, True)
 
-#bing bong
+# create competition object
+competition = Competition(driver, autonomous)
 
+# create vision object
+vision_1 = Vision(Ports.PORT1, 100, dark_blue)
+brightness = 0
+
+#bing bong  
 
 # monitor Controller input
 def check_Controller():
@@ -66,7 +72,19 @@ def check_Controller():
             else:
                 holding.open()
                 openning = 1
-
+      
+       
+def pre_auton():
+    biggest = vision_1.largest_object.width;
+    
+                   
+def driver():
+    brain.screen.print("Driver mode")
+    
+def autonomous():
+    brain.screen.print("Auton mode")
+    
+    
 check_Controller()
                 
         
